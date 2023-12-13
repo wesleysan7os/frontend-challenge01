@@ -1,0 +1,10 @@
+.wrapper {
+  position: relative;
+}
+
+.wrapper > main {
+  margin: 0 auto;
+  padding: 0 1rem;
+  max-width: 46rem;
+  margin-top: calc(0px - 1.7rem);
+}

@@ -11,12 +11,8 @@
 .todo span {
   font-weight: 900;
   font-size: 2.5rem;
-}
-
-.todo :first-child {
-  color: var(--blue);
-}
-
-.todo :last-child {
-  color: var(--purple-dark);
+  background: linear-gradient(to right, #f2f2f2, #5e60ce);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }

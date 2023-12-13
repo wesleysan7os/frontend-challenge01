@@ -6,8 +6,7 @@ export const Header = () => {
     <header className={styles.container}>
       <Rocket />
       <div className={styles.todo}>
-        <span>to</span>
-        <span>do</span>
+        <span>todo</span>
       </div>
     </header>
   );
