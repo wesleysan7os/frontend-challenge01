@@ -23,6 +23,8 @@
 }
 
 html {
+  color: var(--gray-100);
+  background-color: var(--gray-600);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

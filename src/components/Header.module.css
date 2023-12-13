@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+
+  padding: 4.5rem 2rem 5rem;
+  background-color: var(--gray-700);
+}
+
+.todo span {
+  font-weight: 900;
+  font-size: 2.5rem;
+}
+
+.todo :first-child {
+  color: var(--blue);
+}
+
+.todo :last-child {
+  color: var(--purple-dark);
+}
