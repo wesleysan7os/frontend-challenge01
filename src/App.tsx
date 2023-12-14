@@ -1,4 +1,4 @@
-// import { useState } from "react";
+import { useState } from "react";
 
 import { Header } from "./components/Header";
 import { CreateTodo } from "./components/CreateTodo";
@@ -15,15 +15,36 @@ export interface ITask {
 }
 
 export function App() {
-  // const [tasks, setTasks] = useState<ITask[]>([]);
-  const tasks = [
+  const [tasks, setTasks] = useState<ITask[]>([
     { id: 1, text: "Lavar louça", isChecked: false },
-    { id: 2, text: "Pegar prata 2", isChecked: true },
-    { id: 3, text: "Fazer a barba", isChecked: true },
-  ];
+    { id: 2, text: "Pegar prata 2", isChecked: false },
+    { id: 3, text: "Fazer a barba", isChecked: false },
+  ]);
+  const [completedTasksCount, setCompletedTasksCount] = useState(0);
+  const createdTasksCount = tasks.length;
 
-  function handleRemoveTask() {}
-  function handleToggleTask() {}
+  function handleRemoveTask(id: number) {
+    const prevTasks = tasks.filter((task) => task.id !== id);
+    setTasks(prevTasks);
+    updateCompletedTasksCount(prevTasks);
+  }
+
+  function handleToggleTask(taskInfo: { id: number; checked: boolean }) {
+    const prevTasks = tasks.map((task) =>
+      task.id === taskInfo.id ? { ...task, isChecked: taskInfo.checked } : task
+    );
+    setTasks(prevTasks);
+    updateCompletedTasksCount(prevTasks);
+  }
+
+  function updateCompletedTasksCount(prevTasks: ITask[]) {
+    setCompletedTasksCount(() => {
+      return prevTasks.reduce((acc: number, cur: ITask) => {
+        if (cur.isChecked) acc += 1;
+        return acc;
+      }, 0);
+    });
+  }
 
   return (
     <main className={styles.wrapper}>
@@ -32,7 +53,10 @@ export function App() {
       <section>
         <CreateTodo />
         <div className={styles.tasksList}>
-          <ListHeader />
+          <ListHeader
+            createdTasksCount={createdTasksCount}
+            completedTasksCount={completedTasksCount}
+          />
 
           {tasks.length > 0 ? (
             <div>

@@ -7,12 +7,12 @@ import styles from "./Item.module.css";
 interface Props {
   data: ITask;
   removeTask: (id: number) => void;
-  toggleTaskStatus: ({ id, value }: { id: number; value: boolean }) => void;
+  toggleTaskStatus: ({ id, checked }: { id: number; checked: boolean }) => void;
 }
 
 export function Item({ data, removeTask, toggleTaskStatus }: Props) {
   function handleTaskToggle() {
-    toggleTaskStatus({ id: data.id, value: !data.isChecked });
+    toggleTaskStatus({ id: data.id, checked: !data.isChecked });
   }
 
   function handleRemove() {
