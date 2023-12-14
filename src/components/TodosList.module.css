@@ -1,0 +1,51 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4rem;
+  margin-bottom: 1.5rem;
+}
+
+header .created {
+  font-size: 0.875rem;
+  font-weight: bold;
+  color: var(--blue);
+}
+
+header .completed {
+  font-size: 0.875rem;
+  font-weight: bold;
+  color: var(--purple);
+}
+
+header .count {
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: var(--gray-200);
+  background-color: var(--gray-400);
+
+  padding: 0.125rem 0.5rem;
+  margin-left: 0.5rem;
+  border-radius: 999em;
+}
+
+main .empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border-top: 1px solid var(--gray-400);
+  border-radius: 8px;
+  padding: 4rem 0;
+}
+
+main .empty :first-child {
+  margin-bottom: 1rem;
+}
+
+.empty strong,
+p {
+  font-size: 1rem;
+  color: var(--gray-300);
+}
