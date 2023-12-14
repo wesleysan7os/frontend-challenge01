@@ -2,9 +2,15 @@
   position: relative;
 }
 
-.wrapper > main {
+.wrapper > section {
   margin: 0 auto;
   padding: 0 1rem;
   max-width: 46rem;
   margin-top: calc(0px - 1.7rem);
+}
+
+.tasksList > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }

@@ -4,7 +4,7 @@ import { Button } from "./Button";
 
 import styles from "./CreateTodo.module.css";
 
-const CreateTodo = () => {
+export const CreateTodo = () => {
   return (
     <div className={styles.wrapper}>
       <input type="text" placeholder="Adicione uma nova tarefa" />
@@ -12,5 +12,3 @@ const CreateTodo = () => {
     </div>
   );
 };
-
-export default CreateTodo;

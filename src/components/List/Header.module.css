@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4rem;
+  margin-bottom: 1.5rem;
+}
+
+aside > p {
+  display: inline;
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+aside .created {
+  color: var(--blue);
+}
+
+aside .completed {
+  color: var(--purple);
+}
+
+aside .count {
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: var(--gray-200);
+  background-color: var(--gray-400);
+
+  padding: 0.125rem 0.5rem;
+  margin-left: 0.5rem;
+  border-radius: 999em;
+}
