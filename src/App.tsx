@@ -1,38 +1,46 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 import { Header } from "./components/Header";
 import { CreateTodo } from "./components/CreateTodo";
-import ListHeader from "./components/List/Header";
 import { Item } from "./components/List/Item";
 import { Empty } from "./components/List/Empty";
+import ListHeader from "./components/List/Header";
 
 import styles from "./App.module.css";
 
 export interface ITask {
-  id: number;
+  id: string;
   text: string;
   isChecked: boolean;
 }
 
 export function App() {
-  const [tasks, setTasks] = useState<ITask[]>([
-    { id: 1, text: "Lavar louça", isChecked: false },
-    { id: 2, text: "Pegar prata 2", isChecked: false },
-    { id: 3, text: "Fazer a barba", isChecked: false },
-  ]);
+  const storedTasks = localStorage.getItem("todos");
+  const initialTasks = storedTasks ? JSON.parse(storedTasks) : [];
+
+  const [tasks, setTasks] = useState<ITask[]>(initialTasks);
   const [completedTasksCount, setCompletedTasksCount] = useState(0);
   const createdTasksCount = tasks.length;
 
-  function handleRemoveTask(id: number) {
+  useEffect(() => {
+    updateCompletedTasksCount(initialTasks);
+  });
+
+  function handleRemoveTask(id: string) {
     const prevTasks = tasks.filter((task) => task.id !== id);
+    localStorage.setItem("todos", JSON.stringify(prevTasks));
+
     setTasks(prevTasks);
     updateCompletedTasksCount(prevTasks);
   }
 
-  function handleToggleTask(taskInfo: { id: number; checked: boolean }) {
+  function handleToggleTask(taskInfo: { id: string; checked: boolean }) {
     const prevTasks = tasks.map((task) =>
       task.id === taskInfo.id ? { ...task, isChecked: taskInfo.checked } : task
     );
+    localStorage.setItem("todos", JSON.stringify(prevTasks));
+
     setTasks(prevTasks);
     updateCompletedTasksCount(prevTasks);
   }
@@ -46,12 +54,19 @@ export function App() {
     });
   }
 
+  function createTodo(content: string) {
+    const newTodo = { id: uuidv4(), text: content, isChecked: false };
+    localStorage.setItem("todos", JSON.stringify([...tasks, newTodo]));
+
+    setTasks((prevTasks) => [...prevTasks, newTodo]);
+  }
+
   return (
     <main className={styles.wrapper}>
       <Header />
 
       <section>
-        <CreateTodo />
+        <CreateTodo createTodo={createTodo} />
         <div className={styles.tasksList}>
           <ListHeader
             createdTasksCount={createdTasksCount}
