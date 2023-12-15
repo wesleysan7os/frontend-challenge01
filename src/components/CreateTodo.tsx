@@ -33,6 +33,7 @@ export const CreateTodo = ({ createTodo }: CreateTodoProps) => {
         content="Criar"
         IconComponent={PlusCircle}
         onClick={handleCreateTodo}
+        disabled={content.trim().length === 0}
       />
     </div>
   );
